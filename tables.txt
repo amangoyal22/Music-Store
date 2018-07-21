@@ -1,0 +1,148 @@
+mysql> show tables;
++----------------------+
+| Tables_in_musicstore |
++----------------------+
+| album                |
+| album_record         |
+| attends              |
+| buy                  |
+| customer             |
+| customer_name        |
+| dealer               |
+| dealer_name          |
+| employee             |
+| employee_name        |
+| import               |
+| updated              |
++----------------------+
+12 rows in set (0.00 sec)
+
+mysql> desc album;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| albumid | int(10)      | NO   | PRI | NULL    |       |
+| title   | varchar(100) | NO   |     | NULL    |       |
+| artist  | int(10)      | NO   |     | NULL    |       |
+| types   | varchar(100) | NO   |     | NULL    |       |
+| year    | date         | NO   |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc album_record;
++---------------+---------+------+-----+---------+-------+
+| Field         | Type    | Null | Key | Default | Extra |
++---------------+---------+------+-----+---------+-------+
+| albumid       | int(10) | NO   | PRI | NULL    |       |
+| sold_quantity | int(10) | NO   |     | NULL    |       |
++---------------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc attends;
++------------+---------+------+-----+---------+-------+
+| Field      | Type    | Null | Key | Default | Extra |
++------------+---------+------+-----+---------+-------+
+| empid      | int(10) | NO   | PRI | NULL    |       |
+| customerid | int(10) | NO   | UNI | NULL    |       |
++------------+---------+------+-----+---------+-------+
+2 rows in set (0.03 sec)
+
+mysql> desc buy;
++------------+---------+------+-----+---------+-------+
+| Field      | Type    | Null | Key | Default | Extra |
++------------+---------+------+-----+---------+-------+
+| customerid | int(10) | NO   | PRI | NULL    |       |
+| albumid    | int(10) | NO   | UNI | NULL    |       |
++------------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc customer;
++---------------+---------------+------+-----+---------+------
+| Field         | Type          | Null | Key | Default | Extra
++---------------+---------------+------+-----+---------+------
+| customerid    | int(10)       | NO   | PRI | NULL    |
+| c_phonenumber | int(10)       | NO   | UNI | NULL    |
+| c_address     | varchar(1000) | YES  |     | NULL    |
+| membership    | tinyint(4)    | YES  |     | NULL    |
++---------------+---------------+------+-----+---------+------
+4 rows in set (0.00 sec)
+
+mysql> desc customer_name;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| customerid | int(10)     | NO   | PRI | NULL    |       |
+| fname      | varchar(20) | NO   |     | NULL    |       |
+| mname      | varchar(20) | YES  |     | NULL    |       |
+| lname      | varchar(20) | NO   |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> desc dealer;
++---------------+---------------+------+-----+---------+------
+| Field         | Type          | Null | Key | Default | Extra
++---------------+---------------+------+-----+---------+------
+| dealerid      | int(10)       | NO   | PRI | NULL    |
+| d_email       | varchar(100)  | YES  |     | NULL    |
+| d_phonenumber | bigint(10)    | NO   | UNI | NULL    |
+| d_address     | varchar(1000) | YES  |     | NULL    |
++---------------+---------------+------+-----+---------+------
+4 rows in set (0.00 sec)
+
+mysql> desc dealer_name;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| dealerid | int(10)     | NO   | PRI | NULL    |       |
+| fname    | varchar(20) | NO   |     | NULL    |       |
+| mname    | varchar(20) | YES  |     | NULL    |       |
+| lname    | varchar(20) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc employee;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| empid       | int(10)       | NO   | PRI | NULL    |       |
+| email       | varchar(100)  | YES  |     | NULL    |       |
+| phonenumber | bigint(15)    | YES  | UNI | NULL    |       |
+| address     | varchar(1000) | YES  |     | NULL    |       |
+| age         | int(4)        | YES  |     | NULL    |       |
+| dob         | date          | NO   | UNI | NULL    |       |
+| password    | varchar(30)   | NO   | UNI | NULL    |       |
+| admin       | tinyint(4)    | NO   |     | NULL    |       |
+| salary      | int(10)       | NO   |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> desc employee_name;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| empid | int(10)     | NO   | MUL | NULL    |       |
+| fname | varchar(20) | NO   |     | NULL    |       |
+| mname | varchar(20) | YES  |     | NULL    |       |
+| lname | varchar(20) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc import;
++----------+---------+------+-----+---------+-------+
+| Field    | Type    | Null | Key | Default | Extra |
++----------+---------+------+-----+---------+-------+
+| dealerid | int(10) | NO   | PRI | NULL    |       |
+| albumid  | int(10) | NO   | UNI | NULL    |       |
+| price    | int(10) | NO   |     | NULL    |       |
+| quantity | int(10) | NO   |     | NULL    |       |
++----------+---------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql> desc updated;
++---------+---------+------+-----+---------+-------+
+| Field   | Type    | Null | Key | Default | Extra |
++---------+---------+------+-----+---------+-------+
+| empid   | int(10) | NO   | PRI | NULL    |       |
+| albumid | int(10) | NO   | UNI | NULL    |       |
++---------+---------+------+-----+---------+-------+
+2 rows in set (0.01 sec)

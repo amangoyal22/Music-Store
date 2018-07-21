@@ -1,0 +1,29 @@
+musicstore
+tables
+	//employee{Name,phno.,empid,address,password,email, salary, birthdate,admin(y/n)}
+	//import{album id and dealer id as comb.in PK,price,quantity}
+	//album{album id, name, artist,price,type,year}
+	//customer{cust id and album as comb in PK, name,phone#, address}
+        //dealer{dealer id,dealer name,phno,adress,email}
+
+	//record_of_cust{custid,purchase,discount}
+	//record_of_album{albumid,sold quan,profit}
+
+
+admin
+songs/coust
+all
+
+
+
+Album,dealer which were imported(M:N:M,TP:PP:TP){price per quantity, stock quan}
+Customer buys albums(M:N,PP:PP)
+Customer has record(1:1,TP:TP)
+Album maintain record(1:1,TP:TP)
+
+ 
+	
+//import - import id
+new tables-------
+album_imports{album id, import id}
+dealer_imports{dealer id, import id}

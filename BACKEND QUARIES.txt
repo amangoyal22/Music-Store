@@ -1,0 +1,281 @@
+create table employee(empid int(10) PRIMARY KEY,salary int(10) NOT NULL,email varchar(100),phonenumber bigint(10) NOT NULL UNIQUE,address varchar(1000) not null,age int(4),dob int(10) NOT NULL,password varchar(30) NOT NULL UNIQUE, admin tinyint);
+create table employee_name(empid int(10) PRIMARY KEY,fname varchar(20) NOT NULL,mname varchar(20),lname varchar(20) NOT NULL,FOREIGN KEY (empid) REFERENCES employee(empid));
+create table dealer(dealerid int(10) PRIMARY KEY,d_email varchar(100),d_phonenumber bigint(10) NOT NULL UNIQUE,d_address varchar(1000));
+create table dealer_name(dealerid int(10) PRIMARY KEY,fname varchar(20) NOT NULL,mname varchar(20),lname varchar(20) NOT NULL,FOREIGN KEY (dealerid) REFERENCES dealer(dealerid));
+create table album(albumid int(10) PRIMARY KEY,title varchar(100) NOT NULL,artist varchar(100) NOT NULL,types varchar(100) NOT NULL,year int(10) NOT NULL,price int(10) NOT NULL);
+create table album_record(albumid int(10) PRIMARY KEY,sold_quantity int(10) NOT NULL,FOREIGN KEY (albumid) REFERENCES album(albumid));
+create table customer(customerid int(10) PRIMARY KEY,c_phonenumber bigint(10) NOT NULL UNIQUE,c_address varchar(1000),membership tinyint(1) not null);
+create table customer_name(customerid int(10) PRIMARY KEY,fname varchar(20) NOT NULL,mname varchar(20),lname varchar(20) NOT NULL,FOREIGN KEY (customerid) REFERENCES customer(customerid));
+create table attends(empid int(10) ,customerid int(10) ,PRIMARY KEY(empid,customerid),FOREIGN KEY (empid) REFERENCES employee(empid),FOREIGN KEY (customerid) REFERENCES customer(customerid));
+create table buy(customerid int(10),albumid int(10),PRIMARY KEY(customerid,albumid), FOREIGN KEY (customerid) REFERENCES customer(customerid),FOREIGN KEY (albumid) REFERENCES album(albumid));
+create table updated(empid int(10),albumid int(10),PRIMARY KEY(empid,albumid),FOREIGN KEY (empid) REFERENCES employee(empid),FOREIGN KEY (albumid) REFERENCES album(albumid));
+create table import(dealerid int(10),albumid int(10), price int(10) NOT NULL, quantity int(10) NOT NULL ,PRIMARY KEY(albumid,dealerid),FOREIGN KEY (dealerid) REFERENCES dealer(dealerid),FOREIGN KEY (albumid) REFERENCES album(albumid));
+///
+
+
+
+INSERT into album values(1,'titanium','sia','rock',2010,899);
+INSERT into album values(2,'fireball','pitbull','rock',2002,1099);
+INSERT into album values(3,'hero','enrique','pop',2004,599);
+INSERT into album values(4,'bailando','enrique','rock',2012,799);
+INSERT into album values(5,'lonely','akon','pop',2011,699);
+INSERT into album values(6,'timber','pitbull','trance',2010,1299);
+INSERT into album values(7,'alive','sia','trance',2009,1399);
+INSERT into album values(8,'loco','enrique','jazz',2001,599);
+INSERT into album values(9,'monster','enrique','hiphop',2004,899);
+INSERT into album values(10,'cheap thrills','sia','jazz',2014,699);
+INSERT into album values(11,'titanium','sia','rock',2013,699);
+INSERT into album values(12,'heartbeat','enrique','pop',2014,999);
+INSERT into album values(13,'rapgod','eminem','trance',2000,999);
+INSERT into album values(14,'stan','eminem','hiphop',2005,899);
+INSERT into album values(15,'greenlight','pitbull','rock',2011,1099);
+INSERT into album values(16,'not afraid','eminem','rock',2007,1599);
+INSERT into album values(17,'blame','akon','jazz',2008,1399);
+INSERT into album values(18,'tonight','pitbull','jazz',2014,1499);
+INSERT into album values(19,'chandelier','sia','trance',2012,1899);
+INSERT into album values(20,'alone','akon','hiphop',2002,1499);
+
+
+
+INSERT into album_record values(1,23);
+INSERT into album_record values(2,42);
+INSERT into album_record values(3,29);
+INSERT into album_record values(4,11);
+INSERT into album_record values(5,45);
+INSERT into album_record values(6,26);
+INSERT into album_record values(7,9);
+INSERT into album_record values(8,60);
+INSERT into album_record values(9,82);
+INSERT into album_record values(10,64);
+INSERT into album_record values(11,41);
+INSERT into album_record values(12,38);
+INSERT into album_record values(13,14);
+INSERT into album_record values(14,72);
+INSERT into album_record values(15,69);
+INSERT into album_record values(16,61);
+INSERT into album_record values(17,80);
+INSERT into album_record values(18,17);
+INSERT into album_record values(19,57);
+INSERT into album_record values(20,63);
+
+
+
+INSERT into customer values(1,9999301938,'a1 chanakyapuri',1);
+INSERT into customer values(2,9934251938,'b1 chanakyapuri',0);
+INSERT into customer values(3,9999432348,'c1 janakpuri',1);
+INSERT into customer values(4,9343301938,'c2 janakpuri',1);
+INSERT into customer values(5,9893421938,'a2 vikaspuri',1);
+INSERT into customer values(6,9995435433,'d3 vikaspuri',0);
+INSERT into customer values(7,9953443223,'a1 sivapuri',1);
+INSERT into customer values(8,9993429482,'a6 inderpuri',0);
+INSERT into customer values(9,9912324890,'d2 todapuri',1);
+INSERT into customer values(10,9934289900,'e1 defence colony',1);
+INSERT into customer values(11,9999301931,'f3 noida',1);
+INSERT into customer values(12,9999301934,'a2 ghaziabaad',0);
+INSERT into customer values(13,9899301935,'s1 faridabad',0);
+INSERT into customer values(14,8799301936,'k1 greater noida',0);
+INSERT into customer values(15,7399301937,'k3 rajendra place',1);
+INSERT into customer values(16,9499301935,'z1 karol bagh',1);
+INSERT into customer values(17,8899301933,'a3 connaught place',0);
+INSERT into customer values(18,9599301938,'b2 rajouri garden',0);
+INSERT into customer values(19,8999301935,'b4 ramesh nagar',1);
+INSERT into customer values(20,7999301937,'d6 chanakyapuri',0);
+
+INSERT into customer_name values(1,'Samarth',NULL,'Bhutani');
+INSERT into customer_name values(2,'Varun','vds','Suvarna');
+INSERT into customer_name values(3,'Aman',NULL,'Goyal');
+INSERT into customer_name values(4,'Bhavesh','Kumar','Vasnani');
+INSERT into customer_name values(5,'Sharad','Shandilya','Jha');
+INSERT into customer_name values(6,'Divyang',NULL,'Tripathi');
+INSERT into customer_name values(7,'Aryan','Kumar','Singh');
+INSERT into customer_name values(8,'Aditya','adi','Jindal');
+INSERT into customer_name values(9,'Asheesh',NULL,'Maheshwari');
+INSERT into customer_name values(10,'Ayushman','amt','Takkar');
+INSERT into customer_name values(11,'Shreya',NULL,'Wadhawan');
+INSERT into customer_name values(12,'Preksha',NULL,'Gupta');
+INSERT into customer_name values(13,'Vaishali','kumar','singh');
+INSERT into customer_name values(14,'Rakshit',NULL,'Hazrati');
+INSERT into customer_name values(15,'Abhishek','kumar','yadav');
+INSERT into customer_name values(16,'Harshul',NULL,'Kanwar');
+INSERT into customer_name values(17,'Pranav',NULL,'Karmakar');
+INSERT into customer_name values(18,'Ujjawal',NULL,'Chugh');
+INSERT into customer_name values(19,'Tanishq','Rajesh','Arora');
+INSERT into customer_name values(20,'Shivansh',NULL,'Aggarwals');
+INSERT into dealer values(1,'one@gmail.com',8053124324,'10d palika nagar');
+INSERT into dealer values(2,'two@gmail.com',7233124324,'50c janakpuri');
+INSERT into dealer values(3,'three@gmail.com',9313125430,'10b janakpuri');
+INSERT into dealer values(4,'four@gmail.com',9753124324,'2f vikaspuri');
+INSERT into dealer values(5,'five@gmail.com',9003124800,'14b ashok nagar');
+INSERT into dealer values(6,'six@gmail.com',9003129865,'113d connaught place');
+INSERT into dealer values(7,'seven@gmail.com',9003123456,'c5 sagarpur');
+INSERT into dealer values(8,'eight@gmail.com',9876524324,'11d todapur');
+INSERT into dealer values(9,'nine@gmail.com',9712324324,'25b patel nagar');
+INSERT into dealer values(10,'ten@gmail.com',8931224324,'104a rajendra nagar');
+INSERT into dealer values(11,'eleven@gmail.com',7893224324,'72d rajouri garden');
+INSERT into dealer values(12,'twelve@gmail.com',7223124324,'b10 raja garden');
+INSERT into dealer values(13,'thirteen@gmail.com',9442224324,'a2 moti nagar');
+INSERT into dealer values(14,'fourteen@gmail.com',9999824324,'241d kirti nagar');
+INSERT into dealer values(15,'fifteen@gmail.com',9000024324,'d5 dwarka');
+INSERT into dealer values(16,'sixteen@gmail.com',7003112345,'20f navada');
+INSERT into dealer values(17,'seventeen@gmail.com',8003123456,'150e uttam nagar');
+INSERT into dealer values(18,'eighteen@gmail.com',9003134567,'b2 dwarka mor');
+INSERT into dealer values(19,'nineteen@gmail.com',8005804324,'a6 janakpuri');
+INSERT into dealer values(20,'twenty@gmail.com',9003717123,'19a pushkar nagar');
+
+INSERT into dealer_name values(1,'Arun',NULL,'Kumar');
+INSERT into dealer_name values(2,'Sorav',NULL,'Sharma');
+INSERT into dealer_name values(3,'Rohan','Ramesh','Sharma');
+INSERT into dealer_name values(4,'Saurabh',NULL,'Kumar');
+INSERT into dealer_name values(5,'Atul',NULL,'Keshav');
+INSERT into dealer_name values(6,'Ajay',NULL,'Wadhwa');
+INSERT into dealer_name values(7,'Amit','Kishan','Snehi');
+INSERT into dealer_name values(8,'Abhinav','abh','Jaggi');
+INSERT into dealer_name values(9,'Simran',NULL,'Tulli');
+INSERT into dealer_name values(10,'Uday',NULL,'Goyal');
+INSERT into dealer_name values(11,'Piyush',NULL,'Shandilya');
+INSERT into dealer_name values(12,'Vijay',NULL,'Vasnani');
+INSERT into dealer_name values(13,'Anthony',NULL,'Jha');
+INSERT into dealer_name values(14,'Amar',NULL,'Bhardwaj');
+INSERT into dealer_name values(15,'Akbar',NULL,'Takkar');
+INSERT into dealer_name values(16,'Ankit','Neeraj','Suvarna');
+INSERT into dealer_name values(17,'Sahil',NULL,'Singh');
+INSERT into dealer_name values(18,'Manmeet',NULL,'Tripathi');
+INSERT into dealer_name values(19,'Harpreet',NULL,'Agarwal');
+INSERT into dealer_name values(20,'Satbir',NULL,'Verma');
+
+insert into employee values(1,500000,'avbs@musicstore.com',9790052239,'E-2/359,Jaipur',25,'1991-08-22','avbs',1);
+insert into employee values(2,50000,'bhavesh@musicstore.com',9785564423,'C-245,Vijaychowk,Jaipur',20,'1996-05-20','bhavesh',1);
+INSERT into employee values(3,5600,'new3@gmail.com',43234235,'Chanakyapuri',41,'1975-11-13','16545564',0);
+INSERT into employee values(4,2300,'new4@gmail.com',43476755,'Chiragpuri',32,'1984-06-11','978676',0);
+INSERT into employee values(5,20000,'new5@gmail.com',43677565,'Rajpuri',27,'1989-07-19','dgsg453',0);
+INSERT into employee values(6,15000,'new6@gmail.com',43423456,'Jahangirpuri',33,'1983-01-14','rgeger543',0);
+INSERT into employee values(7,10000,'new7@gmail.com',43948234,'Lajpat nagar',29,'1987-08-18','htrty64654',0);
+INSERT into employee values(8,41000,'new8@gmail.com',43412322,'Sarojini nagar',35,'1981-03-05','kujyj76',0);
+INSERT into employee values(9,9000,'new9@gmail.com',43555555,'Janakpuri',36,'1982-02-01','yutyt657',0);
+INSERT into employee values(10,4000,'new10@gmail.com',43424444,'Janakpuri',35,'1983-09-07','geregb',0);
+INSERT into employee values(11,98000,'new11@gmail.com',43423333,'Janakpuri',20,'1996-05-03','fsdefw',0);
+INSERT into employee values(12,42000,'new12@gmail.com',43422222,'Vikaspuri',33,'1985-04-23','efwfwer',0);
+INSERT into employee values(13,88000,'new13@gmail.com',43411111,'Rajouri',26,'1990-06-17','erwrfewr',0);
+INSERT into employee values(14,56000,'new14@gmail.com',43000000,'Rajendra place',47,'1969-06-24','94024909',0);
+INSERT into employee values(15,65000,'new15@gmail.com',43424093,'Dwarka',28,'1988-01-06','bvccvx',0);
+INSERT into employee values(16,55000,'new16@gmail.com',43424301,'Moti nagar',25,'1991-05-25','mqwmeem',0);
+INSERT into employee values(17,3000,'new17@gmail.com',43876876,'Kirti Nagar',24,'1982-06-04','czxcnjd',0);
+INSERT into employee values(18,34000,'new18@gmail.com',43987877,'Dwarka',36,'1980-10-29','qeowqpe',0);
+INSERT into employee values(19,50000,'new19@gmail.com',43499999,'Subhash nagar',32,'1983-12-1','cnekqp34',0);
+INSERT into employee values(20,40000,'new20@gmail.com',43883344,'Janakpuri',19,'1997-07-06','wopewrim3',0);
+
+insert into employee_name values(1,'Aman','','Goyal');
+insert into employee_name values(2,'Bahvesh','Kumar','Vasnani');
+INSERT into employee_name values(2,'ashu',NULL,'kohli');
+INSERT into employee_name values(3,'aseem',NULL,'sehwag');
+INSERT into employee_name values(4,'srijan',NULL,'kapoor');
+INSERT into employee_name values(5,'sarthak',NULL,'kumar');
+INSERT into employee_name values(6,'vikrant',NULL,'kapila');
+INSERT into employee_name values(7,'chayan',NULL,'sachdeva');
+INSERT into employee_name values(8,'ishan',NULL,'awasthi');
+INSERT into employee_name values(9,'tarak',NULL,'mehta');
+INSERT into employee_name values(10,'apoorv',NULL,'abhishek');
+INSERT into employee_name values(11,'pranshyu',NULL,'sinha');
+INSERT into employee_name values(12,'pratyush',NULL,'singh');
+INSERT into employee_name values(13,'prunal',NULL,'jadeja');
+INSERT into employee_name values(14,'krunal',NULL,'pandya');
+INSERT into employee_name values(15,'hardik',NULL,'pandya');
+INSERT into employee_name values(16,'mahendra',NULL,'dhoni');
+INSERT into employee_name values(17,'virat',NULL,'kohli');
+INSERT into employee_name values(18,'navjot',NULL,'siddu');
+INSERT into employee_name values(19,'virender',NULL,'sharma');
+INSERT into employee_name values(20,'gautam',NULL,'fernandes');
+
+INSERT into import values(1,20,599,80);
+INSERT into import values(2,19,899,71);
+INSERT into import values(3,18,399,24);
+INSERT into import values(4,17,499,103);
+INSERT into import values(5,16,999,77);
+INSERT into import values(6,15,1199,83);
+INSERT into import values(7,14,1099,97);
+INSERT into import values(8,13,399,28);
+INSERT into import values(9,12,599,49);
+INSERT into import values(10,11,699,63);
+INSERT into import values(11,10,499,90);
+INSERT into import values(12,9,799,90);
+INSERT into import values(13,8,899,80);
+INSERT into import values(14,7,499,50);
+INSERT into import values(15,6,999,70);
+INSERT into import values(16,5,1299,65);
+INSERT into import values(17,4,1099,35);
+INSERT into import values(18,3,1299,45);
+INSERT into import values(19,2,1599,60);
+INSERT into import values(20,1,1199,40);
+
+INSERT into updated values(1,2);
+INSERT into updated values(12,20);
+INSERT into updated values(11,19);
+INSERT into updated values(10,6);
+INSERT into updated values(9,15);
+INSERT into updated values(17,7);
+INSERT into updated values(3,19);
+INSERT into updated values(5,14);
+INSERT into updated values(6,1);
+INSERT into updated values(5,15);
+INSERT into updated values(9,12);
+INSERT into updated values(16,8);
+INSERT into updated values(6,5);
+INSERT into updated values(3,4);
+INSERT into updated values(12,2);
+INSERT into updated values(13,6);
+INSERT into updated values(15,9);
+INSERT into updated values(18,16);
+INSERT into updated values(14,16);
+INSERT into updated values(16,17);
+
+INSERT into attends values(1,1);
+INSERT into attends values(1,2);
+INSERT into attends values(1,3);
+INSERT into attends values(1,4);
+INSERT into attends values(2,5);
+INSERT into attends values(2,6);
+INSERT into attends values(2,7);
+INSERT into attends values(3,8);
+INSERT into attends values(3,9);
+INSERT into attends values(3,10);
+INSERT into attends values(4,11);
+INSERT into attends values(4,12);
+INSERT into attends values(5,13);
+INSERT into attends values(6,14);
+INSERT into attends values(6,15);
+INSERT into attends values(7,16);
+INSERT into attends values(7,17);
+INSERT into attends values(8,18);
+INSERT into attends values(8,19);
+
+
+INSERT into buy values(1,1);
+INSERT into buy values(2,1);
+INSERT into buy values(3,3);
+INSERT into buy values(4,5);
+INSERT into buy values(5,10);
+INSERT into buy values(6,4);
+INSERT into buy values(7,18);
+INSERT into buy values(8,14);
+INSERT into buy values(9,12);
+INSERT into buy values(10,19);
+INSERT into buy values(11,20);
+INSERT into buy values(12,2);
+INSERT into buy values(13,6);
+INSERT into buy values(14,9);
+INSERT into buy values(15,10);
+INSERT into buy values(16,15);
+INSERT into buy values(17,16);
+INSERT into buy values(18,4);
+INSERT into buy values(19,7);
+
+
+
+
+
+
+
+
+
+
+

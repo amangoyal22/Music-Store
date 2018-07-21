@@ -1,0 +1,4 @@
+artist
+album
+price 
+selected
